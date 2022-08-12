@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-param-reassign */
 import { ReactNode, useMemo, useReducer } from 'react';
 import loadAllForms from '../../helpers/forms';
-import { Form } from '../../interfaces/form';
+import { Form, FormValue } from '../../interfaces/form';
 import FormContext from './FormContext';
 import formReducer from './formReducer';
 import { FormState } from './interfaces';
@@ -12,6 +14,7 @@ interface Props {
 const FORM_INITIAL_STATE: FormState = {
   forms: [],
   activeForm: {} as Form,
+  formValues: [] as FormValue[],
 };
 
 function FormProvider({ children }: Props) {
@@ -32,7 +35,31 @@ function FormProvider({ children }: Props) {
     });
   };
 
-  const formProviderValue = useMemo(() => ({ ...state, loadForms, setActiveForm }), [state]);
+  const addFormValue = (key: string, value: string) => {
+    let { formValues } = state;
+    const keyAlreadyExists = formValues.find((fvalue) => key in fvalue);
+
+    if (keyAlreadyExists) {
+      formValues.map((formValue) => {
+        if (key in formValue) {
+          Object.keys(formValue).forEach((keyObj) => {
+            formValue[keyObj] = value;
+          });
+        }
+
+        return formValue;
+      });
+    } else {
+      formValues = [...formValues, { [key]: value }];
+    }
+
+    dispatch({
+      type: '[FORM] Add form value',
+      payload: formValues,
+    });
+  };
+
+  const formProviderValue = useMemo(() => ({ ...state, loadForms, setActiveForm, addFormValue }), [state]);
 
   return <FormContext.Provider value={formProviderValue}>{children}</FormContext.Provider>;
 }

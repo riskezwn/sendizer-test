@@ -1,5 +1,8 @@
-import React from 'react';
-import { Box, Grid, TextField, Typography } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { Box, Grid, IconButton, TextField, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import FormContext from '../../context/form/FormContext';
 
 interface Props {
   label: string;
@@ -9,13 +12,34 @@ interface Props {
 }
 
 function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Props) {
+  const { addFormValue } = useContext(FormContext);
+
+  const [key, setKey] = useState('');
+  const [value, setValue] = useState('');
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const onKeyChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setKey(target.value);
+  };
+
+  const onValueChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(target.value);
+  };
+
+  const handleAddValue = () => {
+    if (key && value) {
+      addFormValue(key, value);
+      setIsDisabled((disabled) => !disabled);
+    }
+  };
+
   return (
     <Box sx={{ my: 2 }}>
-      <Typography color="GrayText" fontSize={10}>
+      <Typography sx={{ mb: 1 }} color="GrayText" fontSize={10}>
         {label}
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
+      <Grid container spacing={1} justifyContent="center" alignItems="center">
+        <Grid item xs={5}>
           <TextField
             id={name}
             label={placeholderKey}
@@ -23,17 +47,32 @@ function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Pr
             placeholder={placeholderKey}
             multiline
             maxRows={4}
+            value={key}
+            onChange={onKeyChange}
+            disabled={isDisabled}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             id={name}
             label={placeholderValue}
             variant="outlined"
             placeholder={placeholderValue}
-            multiline
-            maxRows={4}
+            value={value}
+            onChange={onValueChange}
+            disabled={isDisabled}
           />
+        </Grid>
+        <Grid item xs={2}>
+          {!isDisabled ? (
+            <IconButton onClick={handleAddValue}>
+              <AddIcon />
+            </IconButton>
+          ) : (
+            <IconButton onClick={handleAddValue}>
+              <RemoveIcon />
+            </IconButton>
+          )}
         </Grid>
       </Grid>
     </Box>

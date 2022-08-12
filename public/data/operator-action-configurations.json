@@ -18,6 +18,12 @@
             "place_holder": "Ejem: Seur international"
           },
           {
+            "label": "Nombre del operador",
+            "name": "operatorName",
+            "type": "TextComponent",
+            "place_holder": "Operator"
+          },
+          {
             "label": "Operador logístico",
             "name": "operatorSelector",
             "type": "OperatorSelectorComponent",
@@ -83,6 +89,12 @@
             "type": "KeyValueComponent",
             "place_holder_key": "nombre variable ...",
             "place_holder_value": "valor ..."
+          },
+          {
+            "label": "Campo de configuración:",
+            "name": "configurationsField",
+            "type": "TextAreaComponent",
+            "place_holder": "Configuraciones..."
           }
         ]
       }

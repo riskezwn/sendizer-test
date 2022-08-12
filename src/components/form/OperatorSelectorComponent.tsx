@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import LogisticOperator from '../../interfaces/logisticOperators';
+import FormContext from '../../context/form/FormContext';
 
 interface Props {
   label: string;
@@ -8,30 +9,33 @@ interface Props {
   placeholder: string;
 }
 
-function OperatorSelectorComponent({ label, name, placeholder }: Props) {
-  const logisticOperators: LogisticOperator[] = [
-    {
-      name: 'Correos express',
-      id: 1,
-    },
-    {
-      name: 'Seur',
-      id: 2,
-    },
-    {
-      name: 'UPS',
-      id: 3,
-    },
-  ];
+const logisticOperators: LogisticOperator[] = [
+  {
+    name: 'Correos express',
+    id: 1,
+  },
+  {
+    name: 'Seur',
+    id: 2,
+  },
+  {
+    name: 'UPS',
+    id: 3,
+  },
+];
 
+function OperatorSelectorComponent({ label, name, placeholder }: Props) {
+  const { addFormValue } = useContext(FormContext);
   const [operator, setOperator] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setOperator(event.target.value as string);
+    const value = event.target.value as string;
+    setOperator(value);
+    addFormValue(name, value);
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={{ mt: 2 }}>
       <InputLabel id={name}>{label}</InputLabel>
       <Select
         displayEmpty

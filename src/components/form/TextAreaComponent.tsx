@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TextField } from '@mui/material';
+import FormContext from '../../context/form/FormContext';
 
 interface Props {
   label: string;
@@ -8,8 +9,23 @@ interface Props {
 }
 
 function TextAreaComponent({ label, name, placeholder }: Props) {
+  const { addFormValue } = useContext(FormContext);
+
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    addFormValue(target.id, target.value);
+  };
+
   return (
-    <TextField id={name} label={label} variant="outlined" placeholder={placeholder} multiline rows={2} maxRows={4} />
+    <TextField
+      id={name}
+      label={label}
+      variant="outlined"
+      placeholder={placeholder}
+      multiline
+      rows={2}
+      fullWidth
+      onChange={handleChange}
+    />
   );
 }
 

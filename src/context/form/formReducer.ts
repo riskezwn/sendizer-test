@@ -12,6 +12,11 @@ const formReducer = (state: FormState, action: FormActionType): FormState => {
         ...state,
         activeForm: state.forms.find((form) => form.id_form === action.payload),
       };
+    case '[FORM] Add form value':
+      return {
+        ...state,
+        formValues: action.payload,
+      };
     default:
       return state;
   }

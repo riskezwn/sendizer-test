@@ -26,3 +26,7 @@ export interface Field {
   place_holder_key: string;
   place_holder_value: string;
 }
+
+export interface FormValue {
+  [key: string]: string;
+}
