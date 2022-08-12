@@ -7,10 +7,10 @@ interface Props {
   placeholder: string;
 }
 
-function InputTextComponent({ label, name, placeholder }: Props) {
+function TextAreaComponent({ label, name, placeholder }: Props) {
   return (
     <TextField id={name} label={label} variant="outlined" placeholder={placeholder} multiline rows={2} maxRows={4} />
   );
 }
 
-export default InputTextComponent;
+export default TextAreaComponent;

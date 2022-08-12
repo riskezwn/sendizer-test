@@ -14,7 +14,7 @@ function DialogComponent({ children }: Props) {
 
   return (
     <Dialog open={isDialogOpen}>
-      <DialogTitle sx={{ m: 0, p: 2 }}>
+      <DialogTitle sx={{ mt: 4, p: 2 }}>
         {activeForm && activeForm.name}
         {isDialogOpen ? (
           <IconButton

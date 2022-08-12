@@ -1,5 +1,6 @@
 import { ReactNode, useMemo, useReducer } from 'react';
 import loadAllForms from '../../helpers/forms';
+import { Form } from '../../interfaces/form';
 import FormContext from './FormContext';
 import formReducer from './formReducer';
 import { FormState } from './interfaces';
@@ -10,15 +11,7 @@ interface Props {
 
 const FORM_INITIAL_STATE: FormState = {
   forms: [],
-  activeForm: {
-    type: 'FORM',
-    name: '',
-    id_form: 1,
-    method: 'POST',
-    action: '',
-    validate: false,
-    fields: [],
-  },
+  activeForm: {} as Form,
 };
 
 function FormProvider({ children }: Props) {

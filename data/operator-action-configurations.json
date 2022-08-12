@@ -78,18 +78,11 @@
         "type": "StepComponent",
         "fields": [
           {
-            "label": "Cofiguraciones",
-            "name": "configurations",
-            "type": "CollectionComponent",
-            "field": [
-              {
-                "label": "Campo de configuración:",
-                "name": "configurationsFields",
-                "type": "KeyValueComponent",
-                "place_holder_key": "nombre variable ...",
-                "place_holder_value": "valor ..."
-              }
-            ]
+            "label": "Campo de configuración:",
+            "name": "configurationsFields",
+            "type": "KeyValueComponent",
+            "place_holder_key": "nombre variable ...",
+            "place_holder_value": "valor ..."
           }
         ]
       }
