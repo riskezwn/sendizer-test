@@ -22,6 +22,7 @@ export interface Field {
   type: FormType;
   place_holder: string;
   fields?: Field[];
+  field: Field[];
   place_holder_key: string;
   place_holder_value: string;
 }

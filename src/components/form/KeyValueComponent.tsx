@@ -11,7 +11,9 @@ interface Props {
 function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Props) {
   return (
     <Box sx={{ my: 2 }}>
-      <Typography color="GrayText">{label}</Typography>
+      <Typography color="GrayText" fontSize={10}>
+        {label}
+      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <TextField

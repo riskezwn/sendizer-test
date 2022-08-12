@@ -6,6 +6,7 @@ import KeyValueComponent from './form/KeyValueComponent';
 import TextAreaComponent from './form/TextAreaComponent';
 import { Field } from '../interfaces/form';
 import FormType from '../interfaces/formTypes';
+import CollectionComponent from './form/CollectionComponent';
 
 interface Props {
   fields: Field[];
@@ -13,7 +14,7 @@ interface Props {
 
 function FormGroup({ fields }: Props) {
   return (
-    <Box>
+    <Box sx={{ my: 2 }}>
       {fields.map((field) => {
         switch (field.type as FormType) {
           case 'TextComponent':
@@ -53,6 +54,8 @@ function FormGroup({ fields }: Props) {
                 placeholderValue={field.place_holder_value}
               />
             );
+          case 'CollectionComponent':
+            return <CollectionComponent field={field.field[0]} key={field.name} label={field.label} />;
           default:
             return null;
         }
