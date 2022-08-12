@@ -1,20 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-  TextField,
-  Typography,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Button, Typography } from '@mui/material';
 import UIContext from './context/ui/UIContext';
+import OperatorSelectorComponent from './components/form/OperatorSelectorComponent';
+import StepComponent from './components/StepComponent';
+import DialogComponent from './components/ui/DialogComponent';
 
 function App() {
   const [testData, setTestData] = useState([]);
-  const { isDialogOpen, toggleDialog } = useContext(UIContext);
+  const { toggleDialog } = useContext(UIContext);
 
   useEffect(() => {
     fetch('/data/logistics-operators.json')
@@ -27,39 +20,10 @@ function App() {
       <Typography variant="h1">Hello world</Typography>
       <Button onClick={toggleDialog}>Open dialog</Button>
 
-      <Dialog open={isDialogOpen}>
-        <DialogTitle sx={{ m: 0, p: 2 }}>
-          Hola
-          {isDialogOpen ? (
-            <IconButton
-              aria-label="close"
-              onClick={toggleDialog}
-              sx={{
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[700],
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          ) : null}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-      </Dialog>
+      <DialogComponent>
+        <StepComponent />
+        <OperatorSelectorComponent label="Operator" name="operator" placeholder="Select one..." />
+      </DialogComponent>
     </div>
   );
 }
