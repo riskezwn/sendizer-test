@@ -1,19 +1,18 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button, Typography } from '@mui/material';
 import UIContext from './context/ui/UIContext';
 import OperatorSelectorComponent from './components/form/OperatorSelectorComponent';
 import StepComponent from './components/StepComponent';
 import DialogComponent from './components/ui/DialogComponent';
+import FormContext from './context/form/FormContext';
 
 function App() {
-  const [testData, setTestData] = useState([]);
   const { toggleDialog } = useContext(UIContext);
+  const { loadForms } = useContext(FormContext);
 
   useEffect(() => {
-    fetch('/data/logistics-operators.json')
-      .then((response) => response.json())
-      .then((data) => setTestData(data));
-  }, []);
+    loadForms();
+  }, [loadForms]);
 
   return (
     <div className="App">
