@@ -46,5 +46,53 @@
         ]
       }
     ]
+  },
+  {
+    "type": "FORM",
+    "name": "Configuraciones de acciones de operadores 2",
+    "id_form": 2,
+    "method": "POST",
+    "action": "https://localhost/form/1/action",
+    "validate": true,
+    "fields": [
+      {
+        "label": "Paso 1",
+        "type": "StepComponent",
+        "fields": [
+          {
+            "label": "Nombre de la configuración",
+            "name": "configurationName",
+            "type": "TextComponent",
+            "place_holder": "Ejem: Seur international"
+          },
+          {
+            "label": "Operador logístico",
+            "name": "operatorSelector",
+            "type": "OperatorSelectorComponent",
+            "place_holder": "Selecciona uno..."
+          }
+        ]
+      },
+      {
+        "label": "Paso 2",
+        "type": "StepComponent",
+        "fields": [
+          {
+            "label": "Cofiguraciones",
+            "name": "configurations",
+            "type": "CollectionComponent",
+            "field": [
+              {
+                "label": "Campo de configuración:",
+                "name": "configurationsFields",
+                "type": "KeyValueComponent",
+                "place_holder_key": "nombre variable ...",
+                "place_holder_value": "valor ..."
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

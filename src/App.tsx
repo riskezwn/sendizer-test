@@ -1,14 +1,13 @@
 import { useContext, useEffect } from 'react';
-import { Button, Typography } from '@mui/material';
-import UIContext from './context/ui/UIContext';
+import { Box, Grid, Typography } from '@mui/material';
 import OperatorSelectorComponent from './components/form/OperatorSelectorComponent';
 import StepComponent from './components/StepComponent';
 import DialogComponent from './components/ui/DialogComponent';
 import FormContext from './context/form/FormContext';
+import FormGridItem from './components/ui/FormGridItem';
 
 function App() {
-  const { toggleDialog } = useContext(UIContext);
-  const { loadForms } = useContext(FormContext);
+  const { loadForms, forms } = useContext(FormContext);
 
   useEffect(() => {
     loadForms();
@@ -16,8 +15,17 @@ function App() {
 
   return (
     <div className="App">
-      <Typography variant="h1">Hello world</Typography>
-      <Button onClick={toggleDialog}>Open dialog</Button>
+      <Box sx={{ p: 5 }}>
+        <Typography variant="h1">Form list</Typography>
+
+        <Grid container spacing={2}>
+          {forms.map(({ id_form, name }) => (
+            <Grid item xs={4} key={id_form}>
+              <FormGridItem id={id_form} name={name} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
 
       <DialogComponent>
         <StepComponent />

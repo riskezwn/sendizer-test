@@ -2,6 +2,7 @@ import React, { useContext, ReactNode } from 'react';
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import UIContext from '../../context/ui/UIContext';
+import FormContext from '../../context/form/FormContext';
 
 interface Props {
   children: ReactNode;
@@ -9,11 +10,12 @@ interface Props {
 
 function DialogComponent({ children }: Props) {
   const { isDialogOpen, toggleDialog } = useContext(UIContext);
+  const { activeForm } = useContext(FormContext);
 
   return (
     <Dialog open={isDialogOpen}>
       <DialogTitle sx={{ m: 0, p: 2 }}>
-        Title
+        {activeForm && activeForm.name}
         {isDialogOpen ? (
           <IconButton
             aria-label="close"

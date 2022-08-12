@@ -10,6 +10,15 @@ interface Props {
 
 const FORM_INITIAL_STATE: FormState = {
   forms: [],
+  activeForm: {
+    type: 'FORM',
+    name: '',
+    id_form: 1,
+    method: 'POST',
+    action: '',
+    validate: false,
+    fields: [],
+  },
 };
 
 function FormProvider({ children }: Props) {
@@ -23,7 +32,14 @@ function FormProvider({ children }: Props) {
     });
   };
 
-  const formProviderValue = useMemo(() => ({ ...state, loadForms }), [state]);
+  const setActiveForm = (id: number) => {
+    dispatch({
+      type: '[FORM] Set active form',
+      payload: id,
+    });
+  };
+
+  const formProviderValue = useMemo(() => ({ ...state, loadForms, setActiveForm }), [state]);
 
   return <FormContext.Provider value={formProviderValue}>{children}</FormContext.Provider>;
 }
