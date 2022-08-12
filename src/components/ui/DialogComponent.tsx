@@ -10,7 +10,12 @@ interface Props {
 
 function DialogComponent({ children }: Props) {
   const { isDialogOpen, toggleDialog } = useContext(UIContext);
-  const { activeForm } = useContext(FormContext);
+  const { activeForm, clearFormValues } = useContext(FormContext);
+
+  const handleClose = () => {
+    clearFormValues();
+    toggleDialog();
+  };
 
   return (
     <Dialog open={isDialogOpen}>
@@ -19,7 +24,7 @@ function DialogComponent({ children }: Props) {
         {isDialogOpen ? (
           <IconButton
             aria-label="close"
-            onClick={toggleDialog}
+            onClick={handleClose}
             sx={{
               position: 'absolute',
               right: 8,

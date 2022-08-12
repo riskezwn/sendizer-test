@@ -12,7 +12,7 @@ interface Props {
 }
 
 function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Props) {
-  const { addFormValue } = useContext(FormContext);
+  const { addFormValue, removeFormValue } = useContext(FormContext);
 
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
@@ -31,6 +31,12 @@ function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Pr
       addFormValue(key, value);
       setIsDisabled((disabled) => !disabled);
     }
+  };
+
+  const handleRemoveValue = () => {
+    if (!isDisabled) return;
+    setIsDisabled((disabled) => !disabled);
+    removeFormValue(key);
   };
 
   return (
@@ -69,7 +75,7 @@ function KeyValueComponent({ label, name, placeholderKey, placeholderValue }: Pr
               <AddIcon />
             </IconButton>
           ) : (
-            <IconButton onClick={handleAddValue}>
+            <IconButton onClick={handleRemoveValue}>
               <RemoveIcon />
             </IconButton>
           )}

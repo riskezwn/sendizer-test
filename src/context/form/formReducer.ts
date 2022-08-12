@@ -17,6 +17,16 @@ const formReducer = (state: FormState, action: FormActionType): FormState => {
         ...state,
         formValues: action.payload,
       };
+    case '[FORM] Remove form value':
+      return {
+        ...state,
+        formValues: action.payload,
+      };
+    case '[FORM] Clear form values':
+      return {
+        ...state,
+        formValues: [],
+      };
     default:
       return state;
   }

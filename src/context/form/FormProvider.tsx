@@ -59,7 +59,26 @@ function FormProvider({ children }: Props) {
     });
   };
 
-  const formProviderValue = useMemo(() => ({ ...state, loadForms, setActiveForm, addFormValue }), [state]);
+  const removeFormValue = (key: string) => {
+    let { formValues } = state;
+    formValues = formValues.filter((fvalue) => !(key in fvalue));
+
+    dispatch({
+      type: '[FORM] Remove form value',
+      payload: formValues,
+    });
+  };
+
+  const clearFormValues = () => {
+    dispatch({
+      type: '[FORM] Clear form values',
+    });
+  };
+
+  const formProviderValue = useMemo(
+    () => ({ ...state, loadForms, setActiveForm, addFormValue, clearFormValues, removeFormValue }),
+    [state],
+  );
 
   return <FormContext.Provider value={formProviderValue}>{children}</FormContext.Provider>;
 }

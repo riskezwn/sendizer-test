@@ -7,12 +7,16 @@ export interface FormContextProps {
   loadForms: () => Promise<void>;
   setActiveForm: (id: number) => void;
   addFormValue: (key: string, value: string) => void;
+  removeFormValue: (key: string) => void;
+  clearFormValues: () => void;
 }
 
 export type FormActionType =
   | { type: '[FORM] Get all forms'; payload: Form[] }
   | { type: '[FORM] Set active form'; payload: number }
-  | { type: '[FORM] Add form value'; payload: FormValue[] };
+  | { type: '[FORM] Add form value'; payload: FormValue[] }
+  | { type: '[FORM] Remove form value'; payload: FormValue[] }
+  | { type: '[FORM] Clear form values' };
 
 export interface FormState {
   forms: Form[];
