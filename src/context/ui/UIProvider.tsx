@@ -9,7 +9,6 @@ interface Props {
 
 const UI_INITIAL_STATE: UIState = {
   isDialogOpen: false,
-  isModalHistoryOpen: false,
 };
 
 function UIProvider({ children }: Props) {
