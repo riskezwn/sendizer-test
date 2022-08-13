@@ -99,5 +99,27 @@
         ]
       }
     ]
+  },
+  {
+    "type": "FORM",
+    "name": "Configuraciones de acciones de operadores 3",
+    "id_form": 7,
+    "method": "POST",
+    "action": "https://localhost/form/1/action",
+    "validate": true,
+    "fields": [
+      {
+        "label": "Nombre de la configuración",
+        "name": "configurationName",
+        "type": "TextComponent",
+        "place_holder": "Ejem: Seur international"
+      },
+      {
+        "label": "Operador logístico",
+        "name": "operatorSelector",
+        "type": "OperatorSelectorComponent",
+        "place_holder": "Selecciona uno..."
+      }
+    ]
   }
 ]

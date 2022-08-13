@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import LogisticOperator from '../../interfaces/logisticOperators';
 import FormContext from '../../context/form/FormContext';
+import useFetch from '../../hooks/useFetch';
 
 interface Props {
   label: string;
@@ -9,24 +10,11 @@ interface Props {
   placeholder: string;
 }
 
-const logisticOperators: LogisticOperator[] = [
-  {
-    name: 'Correos express',
-    id: 1,
-  },
-  {
-    name: 'Seur',
-    id: 2,
-  },
-  {
-    name: 'UPS',
-    id: 3,
-  },
-];
-
 function OperatorSelectorComponent({ label, name, placeholder }: Props) {
   const { addFormValue } = useContext(FormContext);
   const [operator, setOperator] = useState('');
+
+  const { data }: { data: LogisticOperator[] } = useFetch('/data/logistics-operators.json');
 
   const handleChange = (event: SelectChangeEvent) => {
     const value = event.target.value as string;
@@ -47,7 +35,7 @@ function OperatorSelectorComponent({ label, name, placeholder }: Props) {
         onChange={handleChange}
       >
         <MenuItem disabled>{placeholder}</MenuItem>
-        {logisticOperators.map((operatorItem) => (
+        {data.map((operatorItem) => (
           <MenuItem value={operatorItem.id} key={operatorItem.id}>
             {operatorItem.name}
           </MenuItem>
