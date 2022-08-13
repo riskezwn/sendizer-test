@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Box, Button, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import FormContext from '../context/form/FormContext';
 import FormGroup from './FormGroup';
+import { Field } from '../interfaces/form';
 
 function StepComponent() {
   const { activeForm } = useContext(FormContext);
@@ -17,6 +18,10 @@ function StepComponent() {
     setActiveStep(0);
   };
 
+  // check if the form does not have a step component and return a form group
+  if (steps[0].type !== 'StepComponent') {
+    return <FormGroup fields={steps as Field[]} />;
+  }
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>

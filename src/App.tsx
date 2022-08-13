@@ -4,7 +4,6 @@ import StepComponent from './components/StepComponent';
 import DialogComponent from './components/ui/DialogComponent';
 import FormContext from './context/form/FormContext';
 import FormGridItem from './components/ui/FormGridItem';
-import ModalHistoryComponent from './components/ui/ModalHistoryComponent';
 
 function App() {
   const { loadForms, forms } = useContext(FormContext);
@@ -30,8 +29,6 @@ function App() {
       <DialogComponent>
         <StepComponent />
       </DialogComponent>
-
-      <ModalHistoryComponent />
     </div>
   );
 }
