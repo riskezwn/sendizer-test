@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     loadForms();
-  }, [loadForms]);
+  });
 
   return (
     <div className="App">
