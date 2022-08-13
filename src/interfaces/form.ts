@@ -30,3 +30,9 @@ export interface Field {
 export interface FormValue {
   [key: string]: string;
 }
+
+export interface FormHistory {
+  formId: number;
+  formValue: FormValue[];
+  date: number;
+}

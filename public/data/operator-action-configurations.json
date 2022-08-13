@@ -103,7 +103,7 @@
   {
     "type": "FORM",
     "name": "Configuraciones de acciones de operadores 3",
-    "id_form": 7,
+    "id_form": 3,
     "method": "POST",
     "action": "https://localhost/form/1/action",
     "validate": true,
