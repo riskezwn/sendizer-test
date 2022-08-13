@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import StepComponent from './components/StepComponent';
@@ -10,7 +11,7 @@ function App() {
 
   useEffect(() => {
     loadForms();
-  });
+  }, []);
 
   return (
     <div className="App">
