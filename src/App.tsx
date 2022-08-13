@@ -19,7 +19,7 @@ function App() {
 
         <Grid container spacing={2}>
           {forms.map(({ id_form, name }) => (
-            <Grid item xs={4} key={id_form}>
+            <Grid item sm={12} md={4} key={id_form}>
               <FormGridItem id={id_form} name={name} />
             </Grid>
           ))}
