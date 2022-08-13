@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-param-reassign */
 import { ReactNode, useMemo, useReducer } from 'react';
-import loadAllForms from '../../helpers/forms';
+import { loadAllForms } from '../../helpers/forms';
 import { Form, FormValue } from '../../interfaces/form';
 import FormContext from './FormContext';
 import formReducer from './formReducer';
